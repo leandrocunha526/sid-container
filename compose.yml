@@ -1,0 +1,9 @@
+services:
+    debpkg-dev:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: debpkg-dev
+        volumes:
+            - ./PKGS:/root/PKGS
+        tty: true
