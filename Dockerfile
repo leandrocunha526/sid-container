@@ -1,7 +1,8 @@
 FROM debian:sid
 
-RUN apt -qqy update && \
-    apt -qqy install build-essential \
+RUN apt-get update -qq && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    build-essential \
     devscripts \
     quilt \
     autopkgtest \
@@ -16,6 +17,7 @@ RUN apt -qqy update && \
     tree \
     nano \
     bash-completion && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 RUN sed -i "s/^#pristine-tar/pristine-tar/" /etc/git-buildpackage/gbp.conf && \
